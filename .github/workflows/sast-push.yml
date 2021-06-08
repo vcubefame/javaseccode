@@ -23,7 +23,7 @@ jobs:
       COV_USER: ${{ secrets.COV_USER }}
       COVERITY_PASSPHRASE: ${{ secrets.COVERITY_PASSPHRASE }}
       COVERITY_PROJECT: githubactions
-      COVHOME: C:\\Program Files\\Coverity\\Coverity Static Analysis\\bin
+      # COVHOME: C:\\Program Files\\Coverity\\Coverity Static Analysis\\bin
       BLDCMD: mvn clean compile
       CHECKERS: --all
       GATE_VIEW: commiter-test
@@ -36,13 +36,13 @@ jobs:
     - name: Coverity Full Scan
       run: |
         set -x
-        $COVHOME/bin/cov-configure --java
-        $COVHOME/bin/cov-build --dir idir --fs-capture-search $GITHUB_WORKSPACE $BLDCMD
-        $COVHOME/bin/cov-analyze --dir idir --ticker-mode none --strip-path $GITHUB_WORKSPACE $CHECKERS
-        $COVHOME/bin/cov-commit-defects --dir idir --ticker-mode none --url $COV_URL --stream $COVERITY_PROJECT-${GITHUB_REF##*/} --scm git \
+        & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\cov-configure --java
+        & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\cov-build --dir idir --fs-capture-search $GITHUB_WORKSPACE $BLDCMD
+        & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\cov-analyze --dir idir --ticker-mode none --strip-path $GITHUB_WORKSPACE $CHECKERS
+        & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\cov-commit-defects --dir idir --ticker-mode none --url $COV_URL --stream $COVERITY_PROJECT-${GITHUB_REF##*/} --scm git \
           --description $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID --target $RUNNER_OS --version $GITHUB_SHA
-        $COVHOME/bin/cov-format-errors --dir idir --json-output-v8 cov-findings-v8.json
-        $COVHOME/node/bin/node $COVHOME/SARIF/cov-format-sarif-for-github.js --inputFile cov-findings-v8.json --outputFile cov-findings-sarif.json --repoName $GITHUB_REPOSITORY --checkoutPath $GITHUB_REPOSITORY `pwd` $GITHUB_SHA
+        & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\cov-format-errors --dir idir --json-output-v8 cov-findings-v8.json
+        & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\node\bin\node & "${env:ProgramFiles}\Coverity\Coverity Static Analysis\bin\SARIF\cov-format-sarif-for-github.js --inputFile cov-findings-v8.json --outputFile cov-findings-sarif.json --repoName $GITHUB_REPOSITORY --checkoutPath $GITHUB_REPOSITORY `pwd` $GITHUB_SHA
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
