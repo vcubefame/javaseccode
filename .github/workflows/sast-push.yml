@@ -23,7 +23,7 @@ jobs:
       COV_USER: ${{ secrets.COV_USER }}
       COVERITY_PASSPHRASE: ${{ secrets.COVERITY_PASSPHRASE }}
       COVERITY_PROJECT: githubactions
-      COVHOME: "C:\Program Files\Coverity\Coverity Static Analysis\bin"
+      COVHOME: C:\\Program Files\\Coverity\\Coverity Static Analysis\\bin
       BLDCMD: mvn clean compile
       CHECKERS: --all
       GATE_VIEW: commiter-test
