@@ -24,7 +24,7 @@ jobs:
           command: mvn test
       - run:
           name: BlackDuck
-          command: bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.hub.url="https://testing.blackduck.synopsys.com" --detect.source.path=. --blackduck.hub.username=varun --blackduck.api.token=ZDQ2OTJiYzEtOGE4OC00YjNmLWExMmUtMDIzMTNjZmEwYTg2Ojc5N2I1NjNhLTlhNGItNDc2Ny04OGYyLWE2MmFmMzMzYjNhYQ== --blackduck.trust.cert=true --detect.project.name=CircleCI_Project_Sample --detect.project.version.name=1.0
+          command: bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.hub.url="https://testing.blackduck.synopsys.com" --detect.source.path=$CIRCLE_WORKING_DIRECTORY --blackduck.hub.username=varun --blackduck.api.token=ZDQ2OTJiYzEtOGE4OC00YjNmLWExMmUtMDIzMTNjZmEwYTg2Ojc5N2I1NjNhLTlhNGItNDc2Ny04OGYyLWE2MmFmMzMzYjNhYQ== --blackduck.trust.cert=true --detect.project.name=CircleCI_Project_Sample --detect.project.version.name=1.0
 
 workflows:
   # Below is the definition of your workflow.
