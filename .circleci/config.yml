@@ -22,7 +22,10 @@ jobs:
       - run:
           name: Test
           command: mvn test
-
+test:
+post:
+ 
+    bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.hub.url="https://testing.blackduck.synopsys.com" --blackduck.hub.username=varun --blackduck.api.token=ZDQ2OTJiYzEtOGE4OC00YjNmLWExMmUtMDIzMTNjZmEwYTg2Ojc5N2I1NjNhLTlhNGItNDc2Ny04OGYyLWE2MmFmMzMzYjNhYQ== --blackduck.trust.cert=true --detect.project.name=CircleCI_Project_Sample --detect.project.version.name=1.0
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
@@ -32,7 +35,3 @@ workflows:
     jobs:
       - build-and-test
 
-test:
-post:
- 
-    bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.hub.url="https://testing.blackduck.synopsys.com" --blackduck.hub.username=varun --blackduck.api.token=ZDQ2OTJiYzEtOGE4OC00YjNmLWExMmUtMDIzMTNjZmEwYTg2Ojc5N2I1NjNhLTlhNGItNDc2Ny04OGYyLWE2MmFmMzMzYjNhYQ== --blackduck.trust.cert=true --detect.project.name=CircleCI_Project_Sample --detect.project.version.name=1.0
