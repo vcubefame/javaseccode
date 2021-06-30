@@ -1,29 +1,25 @@
 # Java Sec Code
 
+对于学习Java漏洞代码来说，`Java Sec Code`是一个非常强大且友好的项目。
 
-Java sec code is a very powerful and friendly project for learning Java vulnerability code.
+[英文文档](https://github.com/JoyChou93/java-sec-code/blob/master/README.md)
 
-[中文文档](https://github.com/JoyChou93/java-sec-code/blob/master/README_zh.md)
+## 介绍
 
-## Introduce
+该项目也可以叫做Java Vulnerability Code(Java漏洞代码)。
 
-This project can also be called Java vulnerability code. 
+每个漏洞类型代码默认存在安全漏洞（除非本身不存在漏洞），相关修复代码在注释里。具体可查看每个漏洞代码和注释。
 
-Each vulnerability type code has a security vulnerability by default unless there is no vulnerability. The relevant fix code is in the comments or code. Specifically, you can view each vulnerability code and comments.
+[在线Demo](http://118.25.15.216:8080)
 
-[Online demo](http://118.25.15.216:8080)
-
-Login username & password:
+登录用户名密码：
 
 ```
 admin/admin123
 joychou/joychou123
 ```
 
-
-## Vulnerability Code
-
-Sort by letter.
+## 漏洞代码
 
 - [Actuators to RCE](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/resources/logback-online.xml)
 - [CommandInject](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/CommandInject.java)
@@ -33,10 +29,9 @@ Sort by letter.
 - [Deserialize](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/Deserialize.java)
 - [Fastjson](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/Fastjson.java)
 - [File Upload](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/FileUpload.java)
-- [GetRequestURI](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/GetRequestURI.java)
 - [IP Forge](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/IPForge.java)
 - [Java RMI](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/RMI/Server.java)
-- [JSONP](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/Jsonp.java)
+- [JSONP](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/jsonp/JSONP.java)
 - [ooxmlXXE](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/othervulns/ooxmlXXE.java)
 - [PathTraversal](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/PathTraversal.java)
 - [RCE](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/Rce.java)
@@ -52,8 +47,7 @@ Sort by letter.
 - [XXE](https://github.com/JoyChou93/java-sec-code/blob/master/src/main/java/org/joychou/controller/XXE.java)
 
 
-
-## Vulnerability Description
+## 漏洞说明
 
 - [Actuators to RCE](https://github.com/JoyChou93/java-sec-code/wiki/Actuators-to-RCE)
 - [CORS](https://github.com/JoyChou93/java-sec-code/wiki/CORS)
@@ -70,9 +64,10 @@ Sort by letter.
 - [XXE](https://github.com/JoyChou93/java-sec-code/wiki/XXE)
 - [Others](https://github.com/JoyChou93/java-sec-code/wiki/others)
 
-## How to run
 
-The application will use mybatis auto-injection. Please run mysql server ahead of time and configure the mysql server database's name and username/password except docker environment.
+## 如何运行
+
+应用会用到mybatis自动注入，请提前运行mysql服务，并且配置mysql服务的数据库名称和用户名密码(除非是Docker环境)。
 
 ``` 
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/java_sec_code
@@ -87,119 +82,115 @@ spring.datasource.password=woshishujukumima
 
 ### Docker
 
-
-Start docker:
+开启应用：
 
 ``` 
 docker-compose pull
 docker-compose up
 ```
 
-
-Stop docker:
+关闭应用：
 
 ```
 docker-compose down
 ```
 
-Docker's environment:
+Docker环境：
 
 - Java 1.8.0_102
 - Mysql 8.0.17
 - Tomcat 8.5.11
 
-
 ### IDEA
 
 - `git clone https://github.com/JoyChou93/java-sec-code`
-- Open in IDEA and click `run` button.
+- 在IDEA中打开，直接点击run按钮即可运行。
 
-Example:
+例子：
 
 ```
 http://localhost:8080/rce/exec?cmd=whoami
 ```
+ 
+返回：
 
-return:
-
-```
+``` 
 Viarus
 ```
 
 ### Tomcat
 
-- `git clone https://github.com/JoyChou93/java-sec-code` & `cd java-sec-code`
-- Build war package by `mvn clean package`.
-- Copy war package to tomcat webapps directory.
-- Start tomcat application.
+1. `git clone https://github.com/JoyChou93/java-sec-code & cd java-sec-code`
+2. 生成war包 `mvn clean package`
+3. 将target目录的war包，cp到Tomcat的webapps目录
+4. 重启Tomcat应用
 
-Example:
+
+例子：
 
 ```
 http://localhost:8080/java-sec-code-1.0.0/rce/exec?cmd=whoami
 ```
+ 
+返回：
 
-return:
-
-```
+``` 
 Viarus
 ```
 
 
-### JAR
+### JAR包
 
-Change `war` to `jar` in `pom.xml`.
 
-```xml
-<groupId>sec</groupId>
-<artifactId>java-sec-code</artifactId>
-<version>1.0.0</version>
-<packaging>war</packaging>
+先修改pom.xml里的配置，将war改成jar。
+
+``` 
+    <groupId>sec</groupId>
+    <artifactId>java-sec-code</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
 ```
 
-Build package and run.
+再打包运行即可。
 
 ```
 git clone https://github.com/JoyChou93/java-sec-code
 cd java-sec-code
 mvn clean package -DskipTests 
-java -jar target/java-sec-code-1.0.0.jar
+java -jar 打包后的jar包路径
 ```
 
-## Authenticate
+## 认证
 
-### Login
+### 登录
 
 [http://localhost:8080/login](http://localhost:8080/login)
 
-If you are not logged in, accessing any page will redirect you to the login page. The username & password are as follows.
+如果未登录，访问任何页面都会重定向到login页面。用户名和密码如下。
 
 ```
 admin/admin123
 joychou/joychou123
 ```
-
-### Logout
+### 登出
 
 [http://localhost:8080/logout](http://localhost:8080/logout)
 
-### RememberMe
+### 记住我
 
-Tomcat's default JSESSION session is valid for 30 minutes, so a 30-minute non-operational session will expire. In order to solve this problem, the rememberMe function is introduced, and the default expiration time is 2 weeks.
-
-
-## Contributors
-
-Core developers : [JoyChou](https://github.com/JoyChou93), [liergou9981](https://github.com/liergou9981)
-Other developers: [lightless](https://github.com/lightless233),  [Anemone95](https://github.com/Anemone95), [waderwu](https://github.com/waderwu). 
+Tomcat默认JSESSION会话有效时间为30分钟，所以30分钟不操作会话将过期。为了解决这一问题，引入rememberMe功能，默认过期时间为2周。
 
 
-## Donate
+## 贡献者
 
-If you like the poject, you can donate to support me. With your support, I will be able to make `Java sec code` better 😎.
+核心开发者： [JoyChou](https://github.com/JoyChou93).其他开发者：[lightless](https://github.com/lightless233),  [Anemone95](https://github.com/Anemone95)。欢迎各位提交PR。
+
+## 捐赠
+
+如果你喜欢这个项目，你可以捐款来支持我。 有了你的支持，我将能够更好地制作`Java sec code`项目。
 
 ### Alipay
 
-Scan the QRcode to support `Java sec code`.
+扫描支付宝二维码支持`Java sec code`。
 
 <img title="Alipay QRcode" src="https://aliyun-testaaa.oss-cn-shanghai.aliyuncs.com/alipay_qr.png" width="200">
