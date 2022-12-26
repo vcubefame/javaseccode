@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>1.4.0.RELEASE</version>
+            <version>2.2.7.RELEASE</version>
         </dependency>
 
         <!-- 生成uuid -->
@@ -193,7 +193,7 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.10</version>
+            <version>1.4.20</version>
         </dependency>
 
         <dependency>
