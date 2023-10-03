@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>1.4.0.RELEASE</version>
+            <version>4.0.3</version>
         </dependency>
 
         <!-- 生成uuid -->
@@ -206,7 +206,7 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.9</version> <!-- 3.10-FINAL -->
+            <version>3.11</version> <!-- 3.10-FINAL -->
         </dependency>
 
         <dependency>
