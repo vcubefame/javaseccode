@@ -76,7 +76,7 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.1</version>
+            <version>3.2.2</version>
         </dependency>
 
         <dependency>
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>1.4.0.RELEASE</version>
+            <version>3.0.0</version>
         </dependency>
 
         <!-- 生成uuid -->
